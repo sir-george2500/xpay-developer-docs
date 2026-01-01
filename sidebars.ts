@@ -11,7 +11,11 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "🚀 Getting Started",
       collapsed: false,
-      items: ["getting-started/api-keys", "getting-started/your-first-payment"],
+      items: [
+        "getting-started/registration",
+        "getting-started/api-keys",
+        "getting-started/your-first-payment",
+      ],
     },
     {
       type: "category",

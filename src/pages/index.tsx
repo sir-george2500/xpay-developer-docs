@@ -56,7 +56,10 @@ function HomepageHero() {
           Cards, and Bank Transfers with a single API.
         </p>
         <div className={styles.buttons}>
-          <Link className="button button--primary button--lg" to="/docs">
+          <Link
+            className="button button--primary button--lg"
+            to="/docs/getting-started/registration"
+          >
             Get Started →
           </Link>
           <Link
