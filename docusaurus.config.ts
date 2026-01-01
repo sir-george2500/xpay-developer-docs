@@ -68,8 +68,9 @@ const config: Config = {
         },
         {
           href: "https://discord.gg/A2p4bwvW",
-          label: "Discord",
           position: "right",
+          className: "header-discord-link",
+          "aria-label": "Discord",
         },
         {
           href: "https://dashboard.xpay-bits.com",
@@ -78,8 +79,9 @@ const config: Config = {
         },
         {
           href: "https://github.com/sir-george2500/xpay-developer-platform",
-          label: "GitHub",
           position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub",
         },
       ],
     },
