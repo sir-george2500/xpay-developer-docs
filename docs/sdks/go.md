@@ -4,16 +4,12 @@ sidebar_position: 3
 
 # Go SDK
 
-The official Go SDK for X-Pay.
-
-:::note Coming Soon
-The official X-Pay Go SDK is currently in development. For now, use the REST API directly.
-:::
+The official Go SDK for X-Pay payment processing. Accept Mobile Money, Cards, and Bank Transfers with a single SDK.
 
 ## Installation
 
 ```bash
-go get github.com/xpay/xpay-go
+go get github.com/Sound-X-Team/xpay-go-sdk@v1.0.1
 ```
 
 ## Quick Start
@@ -22,20 +18,25 @@ go get github.com/xpay/xpay-go
 package main
 
 import (
-    "github.com/xpay/xpay-go"
+    "fmt"
+    "log"
+
+    "github.com/Sound-X-Team/xpay-go-sdk/xpay"
 )
 
 func main() {
-    client := xpay.NewClient(
-        xpay.WithSecretKey("sk_sandbox_your_key"),
-        xpay.WithEnvironment(xpay.Sandbox),
-    )
+    // Initialize the client
+    config := xpay.NewConfig("sk_sandbox_your_key")
+    config.MerchantID = "your_merchant_id"
 
+    client := xpay.NewClient(config)
+
+    // Create a payment
     payment, err := client.Payments.Create(&xpay.PaymentRequest{
-        Amount:        5000,
-        Currency:      "RWF",
-        PaymentMethod: "mobile_money",
-        PhoneNumber:   "+250788123456",
+        Amount:        "50.00",
+        Currency:      "USD",
+        PaymentMethod: "stripe",
+        Description:   "Go SDK test payment",
     })
 
     if err != nil {
@@ -43,142 +44,148 @@ func main() {
     }
 
     fmt.Printf("Payment ID: %s\n", payment.ID)
+    fmt.Printf("Status: %s\n", payment.Status)
 }
 ```
 
-## Using REST API Directly
-
-Until the SDK is available, use the standard library:
+## Configuration Options
 
 ```go
-package main
+config := xpay.NewConfig("sk_sandbox_your_key")
+config.MerchantID = "merchant_123"     // Required: Merchant ID
+config.Environment = "sandbox"          // Optional: 'sandbox' or 'live'
+config.BaseURL = "https://server.xpay-bits.com" // Optional: Custom API URL
+config.Timeout = 30                     // Optional: Request timeout in seconds
+```
 
-import (
-    "bytes"
-    "encoding/json"
-    "fmt"
-    "net/http"
-    "os"
-)
+## Payments API
 
-const XPAY_API = "https://server.xpay-bits.com/v1"
+### Create Payment
 
-type PaymentRequest struct {
-    Amount        int    `json:"amount"`
-    Currency      string `json:"currency"`
-    PaymentMethod string `json:"payment_method"`
-    PhoneNumber   string `json:"phone_number"`
+```go
+payment, err := client.Payments.Create(&xpay.PaymentRequest{
+    Amount:        "29.99",
+    Currency:      "USD",
+    PaymentMethod: "stripe",
+    Description:   "Order #12345",
+    CustomerID:    "cust_123",          // Optional
+    PaymentMethodData: map[string]interface{}{
+        "payment_method_types": []string{"card"},
+    },
+    Metadata: map[string]string{
+        "order_id": "12345",
+    },
+    SuccessURL: "https://your-site.com/success",
+    CancelURL:  "https://your-site.com/cancel",
+})
+```
+
+### Retrieve Payment
+
+```go
+payment, err := client.Payments.Retrieve("pay_123456789")
+if err != nil {
+    log.Fatal(err)
 }
+fmt.Printf("Status: %s\n", payment.Status)
+```
 
-type PaymentResponse struct {
-    Success bool `json:"success"`
-    Data    struct {
-        ID       string `json:"id"`
-        Amount   int    `json:"amount"`
-        Currency string `json:"currency"`
-        Status   string `json:"status"`
-    } `json:"data"`
-}
+### List Payments
 
-func CreatePayment(req PaymentRequest) (*PaymentResponse, error) {
-    apiKey := os.Getenv("XPAY_SECRET_KEY")
+```go
+payments, err := client.Payments.List(&xpay.ListOptions{
+    Limit:  10,
+    Offset: 0,
+    Status: "succeeded",
+})
 
-    body, err := json.Marshal(req)
-    if err != nil {
-        return nil, err
-    }
-
-    httpReq, err := http.NewRequest("POST", XPAY_API+"/payments", bytes.NewBuffer(body))
-    if err != nil {
-        return nil, err
-    }
-
-    httpReq.Header.Set("Authorization", "Bearer "+apiKey)
-    httpReq.Header.Set("Content-Type", "application/json")
-
-    client := &http.Client{}
-    resp, err := client.Do(httpReq)
-    if err != nil {
-        return nil, err
-    }
-    defer resp.Body.Close()
-
-    var paymentResp PaymentResponse
-    if err := json.NewDecoder(resp.Body).Decode(&paymentResp); err != nil {
-        return nil, err
-    }
-
-    return &paymentResp, nil
-}
-
-func main() {
-    payment, err := CreatePayment(PaymentRequest{
-        Amount:        5000,
-        Currency:      "RWF",
-        PaymentMethod: "mobile_money",
-        PhoneNumber:   "+250788123456",
-    })
-
-    if err != nil {
-        fmt.Printf("Error: %v\n", err)
-        return
-    }
-
-    fmt.Printf("Payment created: %s\n", payment.Data.ID)
+for _, p := range payments.Data {
+    fmt.Printf("%s: %s %s\n", p.ID, p.Amount, p.Currency)
 }
 ```
 
-## With Error Handling
+## Customer Management
 
 ```go
-package main
+// Create customer
+customer, err := client.Customers.Create(&xpay.CustomerRequest{
+    Name:  "John Doe",
+    Email: "john@example.com",
+    Phone: "+233501234567",
+})
 
-import (
-    "encoding/json"
-    "errors"
-    "fmt"
-    "net/http"
-)
+// Retrieve customer
+customer, err := client.Customers.Retrieve("cust_123")
 
-type XPayError struct {
-    Code    string `json:"code"`
-    Message string `json:"message"`
-    Status  int    `json:"-"`
-}
+// List customers
+customers, err := client.Customers.List(&xpay.ListOptions{Limit: 50})
+```
 
-func (e *XPayError) Error() string {
-    return fmt.Sprintf("%s: %s", e.Code, e.Message)
-}
+## Webhooks
 
-type ErrorResponse struct {
-    Success bool `json:"success"`
-    Error   struct {
-        Code    string `json:"code"`
-        Message string `json:"message"`
-    } `json:"error"`
-}
+### Verify Webhook Signature
 
-func CreatePaymentWithErrorHandling(req PaymentRequest) (*PaymentResponse, error) {
-    // ... make request ...
+```go
+import "github.com/Sound-X-Team/xpay-go-sdk/xpay"
 
-    if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
-        var errResp ErrorResponse
-        json.NewDecoder(resp.Body).Decode(&errResp)
+func webhookHandler(w http.ResponseWriter, r *http.Request) {
+    payload, _ := io.ReadAll(r.Body)
+    signature := r.Header.Get("X-XPay-Signature")
 
-        return nil, &XPayError{
-            Code:    errResp.Error.Code,
-            Message: errResp.Error.Message,
-            Status:  resp.StatusCode,
+    isValid := xpay.VerifyWebhookSignature(
+        string(payload),
+        signature,
+        "whsec_your_webhook_secret",
+    )
+
+    if isValid {
+        var event xpay.WebhookEvent
+        json.Unmarshal(payload, &event)
+
+        switch event.Type {
+        case "payment.succeeded":
+            // Handle successful payment
+        case "payment.failed":
+            // Handle failed payment
         }
     }
 
-    // ... parse success response ...
+    w.WriteHeader(http.StatusOK)
 }
 ```
 
-## Get Notified
+## Error Handling
 
-Want to be notified when the SDK launches?
+```go
+payment, err := client.Payments.Create(paymentReq)
+if err != nil {
+    if xpayErr, ok := err.(*xpay.Error); ok {
+        fmt.Printf("X-Pay Error [%s]: %s\n", xpayErr.Code, xpayErr.Message)
+        fmt.Printf("HTTP Status: %d\n", xpayErr.Status)
+    } else {
+        fmt.Printf("Network error: %v\n", err)
+    }
+    return
+}
+```
 
-- Watch our [GitHub repo](https://github.com/sir-george2500/xpay-developer-platform)
-- Follow us on Twitter [@xpay](https://twitter.com/xpay)
+## Supported Payment Methods
+
+| Method           | Code           | Currencies         |
+| ---------------- | -------------- | ------------------ |
+| Stripe (Cards)   | `stripe`       | USD, EUR, GBP, GHS |
+| MTN MoMo Ghana   | `momo`         | GHS                |
+| MTN MoMo Liberia | `momo_liberia` | LRD, USD           |
+| MTN MoMo Rwanda  | `momo_rwanda`  | RWF                |
+| Orange Money     | `orange`       | LRD, USD           |
+| X-Pay Wallet     | `xpay_wallet`  | All                |
+
+## Requirements
+
+- Go 1.19+
+
+## Next Steps
+
+- [JavaScript SDK](/sdks/javascript) - Node.js & browser SDK
+- [Python SDK](/sdks/python) - Python SDK with async support
+- [Webhooks Guide](/guides/webhooks) - Handle payment notifications

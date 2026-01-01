@@ -9,15 +9,15 @@ The official JavaScript/TypeScript SDK for X-Pay payment processing. Works in No
 ## Installation
 
 ```bash
-npm install @xpay/javascript-sdk
+npm install @bits-devteam/xpay-javascript
 # or
-yarn add @xpay/javascript-sdk
+yarn add @bits-devteam/xpay-javascript
 ```
 
 ## Quick Start
 
 ```javascript
-import XPay from "@xpay/javascript-sdk";
+import XPay from "@bits-devteam/xpay-javascript";
 
 // Initialize the SDK
 const xpay = new XPay({
@@ -185,7 +185,7 @@ const webhook = await xpay.webhooks.create({
 ### Verify Webhook Signature
 
 ```javascript
-import { WebhooksAPI } from "@xpay/javascript-sdk";
+import { WebhooksAPI } from "@bits-devteam/xpay-javascript";
 
 const isValid = await WebhooksAPI.verifySignature(
   webhookPayload, // Raw webhook body as string
@@ -221,7 +221,7 @@ if (isValid) {
 ## Error Handling
 
 ```javascript
-import { XPayError } from "@xpay/javascript-sdk";
+import { XPayError } from "@bits-devteam/xpay-javascript";
 
 try {
   const payment = await xpay.payments.create(paymentData);
@@ -254,7 +254,11 @@ try {
 Full TypeScript support with comprehensive type definitions:
 
 ```typescript
-import XPay, { PaymentRequest, Payment, XPayError } from "@xpay/javascript-sdk";
+import XPay, {
+  PaymentRequest,
+  Payment,
+  XPayError,
+} from "@bits-devteam/xpay-javascript";
 
 const xpay = new XPay({
   apiKey: process.env.XPAY_API_KEY!,
