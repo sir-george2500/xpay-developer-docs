@@ -439,3 +439,59 @@
     height: 200px;
   }
 }
+
+/* Mobile feature cards - stacked with proper spacing */
+@media screen and (max-width: 768px) {
+  .features {
+    padding: 2rem 1rem !important;
+  }
+
+  .contentContainer {
+    padding: 1rem;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .buttons .button {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Force feature cards to stack with gap on mobile */
+:global(.features .row) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  :global(.features .row) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.features .col) {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
+    margin: 0 0 1rem 0 !important;
+  }
+
+  :global(.features .card) {
+    margin: 0 !important;
+  }
+}
