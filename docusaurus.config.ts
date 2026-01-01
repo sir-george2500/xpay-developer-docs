@@ -80,6 +80,7 @@ const config: Config = {
         },
         {
           href: "https://dashboard.xpay-bits.com/",
+          // Link to production dashboard
           label: "Dashboard",
           position: "right",
         },
