@@ -28,18 +28,6 @@ GET /developer/profile
 PUT /developer/profile
 ```
 
-### Get API Keys
-
-```
-GET /developer/api-keys
-```
-
-### Regenerate API Keys
-
-```
-POST /developer/api-keys/regenerate
-```
-
 ### Get Analytics
 
 ```
@@ -136,22 +124,6 @@ DELETE /developer/webhooks/{id}
 
 ```
 POST /developer/webhooks/{id}/test
-```
-
----
-
-## Live Access
-
-### Get Status
-
-```
-GET /developer/live-access/status
-```
-
-### Request Access
-
-```
-POST /developer/live-access/request
 ```
 
 ---
