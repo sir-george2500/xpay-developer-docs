@@ -240,6 +240,34 @@ th {
 
 /* Mobile breakpoint: screens < 768px */
 @media screen and (max-width: 768px) {
+  /* NAVBAR FIX - Hide desktop items, show only hamburger */
+  .navbar__items--right .navbar__item:not(.navbar__toggle) {
+    display: none !important;
+  }
+
+  /* Keep only the brand/logo and hamburger visible */
+  .navbar__items--right {
+    gap: 0;
+  }
+
+  /* Show items in mobile sidebar menu instead */
+  .navbar-sidebar .navbar__item {
+    display: flex !important;
+  }
+
+  /* Navbar overall mobile styling */
+  .navbar {
+    padding: 0 0.5rem;
+  }
+
+  .navbar__brand {
+    margin-right: auto;
+  }
+
+  .navbar__title {
+    font-size: 1rem;
+  }
+
   /* Content container padding */
   .container {
     padding-left: 1rem;
@@ -268,6 +296,34 @@ th {
     width: 100%;
     text-align: center;
     margin-bottom: 0.5rem;
+  }
+
+  /* CARD FIX - Proper spacing and margins */
+  .card {
+    margin: 1rem 0 !important;
+    padding: 1.25rem !important;
+    border-radius: 12px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  /* Features grid - single column on mobile */
+  .row {
+    margin: 0 !important;
+  }
+
+  .col {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
   }
 
   /* Tables - horizontal scroll */
@@ -303,25 +359,6 @@ th {
   p code,
   li code {
     word-break: break-all;
-  }
-
-  /* Cards - full width on mobile */
-  .card {
-    margin: 0.5rem 0;
-    padding: 0.75rem;
-  }
-
-  .card h3 {
-    font-size: 1rem;
-  }
-
-  .card p {
-    font-size: 0.875rem;
-  }
-
-  /* Sidebar toggle fix */
-  .navbar__toggle {
-    margin-right: 0.5rem;
   }
 
   /* Footer columns stack */
@@ -362,13 +399,6 @@ th {
     gap: 0.75rem !important;
   }
 
-  article a[style*="button"] {
-    display: block !important;
-    width: 100% !important;
-    text-align: center !important;
-    margin-bottom: 0.5rem !important;
-  }
-
   /* TOC hide on very small screens */
   .table-of-contents {
     display: none;
@@ -385,6 +415,27 @@ th {
 
   .admonition-content {
     font-size: 0.875rem;
+  }
+
+  /* Homepage specific - feature cards container */
+  .features {
+    padding: 2rem 1rem !important;
+  }
+
+  .features .container {
+    padding: 0 !important;
+  }
+
+  .features .row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .features .col {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
   }
 }
 
