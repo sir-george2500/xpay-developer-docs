@@ -10,27 +10,48 @@ function HomepageHero() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero", styles.heroBanner)}>
-      {/* Grid overlay */}
-      <div className={styles.gridOverlay}></div>
+      {/* Gradient Background */}
+      <div className={styles.gradientBackground}>
+        {/* Floating gradient spheres */}
+        <div className={clsx(styles.sphere, styles.sphere1)}></div>
+        <div className={clsx(styles.sphere, styles.sphere2)}></div>
+        <div className={clsx(styles.sphere, styles.sphere3)}></div>
 
-      {/* Floating particles */}
-      <div className={styles.particles}>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
-        <div className={styles.particle}></div>
+        {/* Central glow */}
+        <div className={styles.glow}></div>
+
+        {/* Grid overlay */}
+        <div className={styles.gridOverlay}></div>
+
+        {/* Noise texture */}
+        <div className={styles.noiseOverlay}></div>
+
+        {/* Floating particles */}
+        <div className={styles.particlesContainer}>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+          <div className={styles.particle}></div>
+        </div>
       </div>
 
-      <div className="container">
-        <Heading as="h1" className={clsx("hero__title", styles.heroTitle)}>
+      {/* Content */}
+      <div className={styles.contentContainer}>
+        <Heading as="h1" className={styles.heroTitle}>
           Build with X-Pay
         </Heading>
-        <p className="hero__subtitle">
+        <p className={styles.heroSubtitle}>
           The unified payment infrastructure for Africa. Accept Mobile Money,
           Cards, and Bank Transfers with a single API.
         </p>
