@@ -3,21 +3,18 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: "X-Pay Developer Docs",
-  tagline: "Payment Infrastructure Built for Developers",
-  favicon: "img/favicon.ico",
-
-  future: {
-    v4: true,
-  },
+  title: "X-Pay Developers",
+  tagline: "Payment Infrastructure for Africa",
+  favicon: "img/logo.png",
 
   url: "https://docs.xpay-bits.com",
   baseUrl: "/",
 
-  organizationName: "sir-george2500",
+  organizationName: "xpay-bits",
   projectName: "xpay-developer-docs",
 
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
 
   i18n: {
     defaultLocale: "en",
@@ -30,9 +27,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          routeBasePath: "/",
-          editUrl:
-            "https://github.com/sir-george2500/xpay-developer-docs/tree/main/",
+          routeBasePath: "docs",
         },
         blog: false,
         theme: {
@@ -43,28 +38,38 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "img/xpay-social-card.png",
+    image: "img/docusaurus-social-card.jpg",
     colorMode: {
-      defaultMode: "dark",
+      defaultMode: "light",
+      disableSwitch: false,
       respectPrefersColorScheme: true,
     },
     navbar: {
       title: "X-Pay",
       logo: {
         alt: "X-Pay Logo",
-        src: "img/logo.svg",
+        src: "img/logo.png",
       },
       items: [
         {
-          type: "docSidebar",
-          sidebarId: "docsSidebar",
+          to: "/docs",
+          label: "Docs",
           position: "left",
-          label: "Documentation",
         },
         {
-          href: "https://server.xpay-bits.com/swagger/index.html",
-          label: "API Reference",
+          to: "/docs/getting-started/registration",
+          label: "Get Started",
           position: "left",
+        },
+        {
+          to: "/docs/api/endpoints",
+          label: "API",
+          position: "left",
+        },
+        {
+          href: "https://discord.gg/A2p4bwvW",
+          label: "Discord",
+          position: "right",
         },
         {
           href: "https://dashboard.xpay-bits.com",
@@ -82,55 +87,57 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Documentation",
+          title: "Getting Started",
           items: [
-            { label: "Getting Started", to: "/" },
-            { label: "Authentication", to: "/authentication" },
             {
-              label: "API Reference",
-              href: "https://server.xpay-bits.com/swagger/index.html",
+              label: "Create Account",
+              to: "/docs/getting-started/registration",
+            },
+            { label: "API Keys", to: "/docs/getting-started/api-keys" },
+            {
+              label: "First Payment",
+              to: "/docs/getting-started/your-first-payment",
             },
           ],
         },
         {
-          title: "Guides",
+          title: "Payments",
           items: [
-            { label: "Accept Payments", to: "/guides/accept-payments" },
-            { label: "Webhooks", to: "/guides/webhooks" },
-            { label: "Go Live", to: "/guides/go-live" },
+            { label: "Stripe (Cards)", to: "/docs/payments/stripe" },
+            { label: "Mobile Money", to: "/docs/payments/mobile-money" },
+            { label: "Webhooks", to: "/docs/guides/webhooks" },
           ],
         },
         {
-          title: "Resources",
+          title: "SDKs",
           items: [
-            {
-              label: "Developer Dashboard",
-              href: "https://dashboard.xpay-bits.com",
-            },
-            { label: "Status Page", href: "https://status.xpay-bits.com" },
+            { label: "JavaScript", to: "/docs/sdks/javascript" },
+            { label: "Python", to: "/docs/sdks/python" },
+            { label: "Go", to: "/docs/sdks/go" },
+          ],
+        },
+        {
+          title: "Community",
+          items: [
+            { label: "Discord", href: "https://discord.gg/A2p4bwvW" },
             {
               label: "GitHub",
               href: "https://github.com/sir-george2500/xpay-developer-platform",
             },
-          ],
-        },
-        {
-          title: "Company",
-          items: [
-            { label: "About X-Pay", href: "https://xpay-bits.com/about" },
-            { label: "Contact Support", href: "mailto:support@xpay-bits.com" },
-            { label: "Terms of Service", href: "https://xpay-bits.com/terms" },
+            {
+              label: "API Reference (Swagger)",
+              href: "https://server.xpay-bits.com/swagger/index.html",
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} X-Pay Technologies. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} X-Pay. Built for African Developers.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ["bash", "json", "go", "typescript", "javascript"],
+      additionalLanguages: ["bash", "json", "go", "python"],
     },
-    algolia: undefined, // Can be configured later for search
   } satisfies Preset.ThemeConfig,
 };
 

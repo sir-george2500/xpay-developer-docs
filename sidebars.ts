@@ -5,38 +5,37 @@ const sidebars: SidebarsConfig = {
     {
       type: "doc",
       id: "intro",
-      label: "🚀 Getting Started",
+      label: "👋 Welcome",
     },
     {
       type: "category",
-      label: "📦 SDKs",
+      label: "🚀 Getting Started",
       collapsed: false,
-      items: ["sdks/javascript", "sdks/python", "sdks/go"],
+      items: [
+        "getting-started/registration",
+        "getting-started/api-keys",
+        "getting-started/your-first-payment",
+      ],
     },
     {
       type: "category",
       label: "💳 Payments",
-      collapsed: false,
-      items: ["payments/stripe", "payments/mobile-money", "payments/overview"],
+      items: ["payments/overview", "payments/stripe", "payments/mobile-money"],
+    },
+    {
+      type: "category",
+      label: "📦 SDKs",
+      items: ["sdks/javascript", "sdks/python", "sdks/go"],
+    },
+    {
+      type: "category",
+      label: "🔔 Webhooks",
+      items: ["guides/webhooks"],
     },
     {
       type: "category",
       label: "📖 Guides",
-      items: [
-        "guides/accept-payments",
-        "guides/webhooks",
-        "guides/go-live",
-        "guides/error-handling",
-      ],
-    },
-    {
-      type: "category",
-      label: "🔐 Authentication",
-      items: [
-        "authentication/overview",
-        "authentication/api-keys",
-        "authentication/jwt-tokens",
-      ],
+      items: ["guides/error-handling", "guides/go-live"],
     },
     {
       type: "category",
