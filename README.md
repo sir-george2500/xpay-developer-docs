@@ -1,41 +1,53 @@
-# Website
+# X-Pay Developer Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Official documentation for the X-Pay Payment Infrastructure.
 
-## Installation
+## Overview
+
+This repository contains the source code for the X-Pay Developer Platform documentation, built using [Docusaurus 3](https://docusaurus.io/).
+
+- **Live Site**: [https://docs.xpay-bits.com](https://docs.xpay-bits.com)
+- **Dashboard**: [https://dashboard.xpay-bits.com](https://dashboard.xpay-bits.com)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
 
 ```bash
-yarn
+npm install
 ```
 
-## Local Development
+### Local Development
+
+Start the development server:
 
 ```bash
-yarn start
+npm start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server at `http://localhost:3000`. Most changes are reflected live without having to restart the server.
 
-## Build
+## Project Structure
 
-```bash
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+- `/docs` - Markdown documentation files
+- `/src` - React components and pages
+- `/static` - Static assets (images, etc.)
+- `docusaurus.config.ts` - Site configuration
 
 ## Deployment
 
-Using SSH:
+The documentation is automatically deployed to Vercel on push to the `main` branch.
+
+To build locally:
 
 ```bash
-USE_SSH=true yarn deploy
+npm run build
 ```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
