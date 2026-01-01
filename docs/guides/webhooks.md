@@ -8,11 +8,15 @@ Webhooks allow you to receive real-time notifications when events occur in your 
 
 ## How Webhooks Work
 
-```
-┌─────────────┐                    ┌─────────────┐
-│   X-Pay     │  HTTP POST Event   │  Your App   │
-│   Server    │ ──────────────────▶│   Server    │
-└─────────────┘                    └─────────────┘
+```mermaid
+sequenceDiagram
+    participant XPay as 🌐 X-Pay Server
+    participant App as 🖥️ Your Server
+
+    Note over XPay: Event occurs (payment, refund, etc.)
+    XPay->>App: HTTP POST webhook event
+    App->>App: Process event
+    App-->>XPay: 200 OK
 ```
 
 1. An event occurs (e.g., payment completes)

@@ -17,11 +17,16 @@ Before requesting live access, ensure you have:
 
 ## Live Access Request Process
 
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   Submit     │ ──▶ │   Review     │ ──▶ │   Approved   │ ──▶ │   Go Live!   │
-│   Request    │     │   (2-3 days) │     │              │     │              │
-└──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+```mermaid
+flowchart LR
+    A[📤 Submit Request] --> B[🔍 Review\n2-3 days]
+    B --> C[✅ Approved]
+    C --> D[🚀 Go Live!]
+
+    style A fill:#3b82f6,stroke:#1e40af,color:#fff
+    style B fill:#f59e0b,stroke:#b45309,color:#fff
+    style C fill:#22c55e,stroke:#15803d,color:#fff
+    style D fill:#8b5cf6,stroke:#6d28d9,color:#fff
 ```
 
 ## Step 1: Prepare Documents

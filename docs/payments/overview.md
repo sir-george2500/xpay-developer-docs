@@ -8,25 +8,17 @@ X-Pay provides a unified API to accept payments through multiple channels includ
 
 ## Payment Flow
 
-```
-┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-│   Customer  │ ───▶ │   X-Pay     │ ───▶ │   Provider  │
-│  (Your App) │      │    API      │      │  (MTN, etc) │
-└─────────────┘      └─────────────┘      └─────────────┘
-       │                    │                    │
-       │    1. Initiate     │                    │
-       │    Payment         │                    │
-       │───────────────────▶│                    │
-       │                    │  2. Forward to     │
-       │                    │     Provider       │
-       │                    │───────────────────▶│
-       │                    │                    │
-       │                    │  3. Payment        │
-       │                    │     Processed      │
-       │                    │◀───────────────────│
-       │    4. Webhook      │                    │
-       │    Notification    │                    │
-       │◀───────────────────│                    │
+```mermaid
+sequenceDiagram
+    participant C as 👤 Customer<br>(Your App)
+    participant X as 🔷 X-Pay API
+    participant P as 🏦 Provider<br>(MTN, Stripe, etc.)
+
+    C->>X: 1. Initiate Payment
+    X->>P: 2. Forward to Provider
+    P->>P: 3. Process Payment
+    P-->>X: 4. Payment Result
+    X-->>C: 5. Webhook Notification ✅
 ```
 
 ## Payment Object

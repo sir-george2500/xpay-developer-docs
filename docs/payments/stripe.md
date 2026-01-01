@@ -8,16 +8,21 @@ Accept Visa, Mastercard, and international cards through X-Pay's Stripe integrat
 
 ## How It Works
 
-```
-┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-│   Frontend  │ ──▶  │   Backend   │ ──▶  │   X-Pay     │ ──▶ Stripe
-│  (Stripe.js)│      │  (Your API) │      │    API      │
-└─────────────┘      └─────────────┘      └─────────────┘
-      │                                         │
-      │              ┌─────────────────────────┘
-      │              │ Returns client_secret
-      ▼              ▼
-   Confirms payment with Stripe.js
+```mermaid
+sequenceDiagram
+    participant FE as 💻 Frontend<br>(Stripe.js)
+    participant BE as 🖥️ Backend<br>(Your API)
+    participant XP as 🔷 X-Pay API
+    participant ST as 💳 Stripe
+
+    FE->>BE: Request payment
+    BE->>XP: Create payment
+    XP->>ST: Create PaymentIntent
+    ST-->>XP: client_secret
+    XP-->>BE: client_secret
+    BE-->>FE: client_secret
+    FE->>ST: Confirm payment
+    ST-->>FE: Success/Error
 ```
 
 ## Integration Steps

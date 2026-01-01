@@ -16,31 +16,21 @@ Accept payments via MTN Mobile Money, Airtel Money, and other African mobile mon
 
 ## How Mobile Money Works
 
-```
-┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-│   Customer  │      │   X-Pay     │      │  MoMo/Orange │
-│   (App)     │      │    API      │      │   Provider   │
-└─────────────┘      └─────────────┘      └─────────────┘
-      │                    │                    │
-   1. Enter phone          │                    │
-      number               │                    │
-      ─────────────────────▶                    │
-      │              2. Create Payment          │
-      │                    ─────────────────────▶
-      │                    │                    │
-      │              3. USSD Push sent to       │
-      │                 customer's phone        │
-      │  ◀──────────────────────────────────────│
-      │                    │                    │
-   4. Customer enters      │                    │
-      PIN on phone         │                    │
-      ─────────────────────────────────────────▶
-      │                    │                    │
-      │              5. Payment confirmed       │
-      │              ◀──────────────────────────│
-      │                    │                    │
-   6. Webhook notification │                    │
-      ◀────────────────────│                    │
+```mermaid
+sequenceDiagram
+    participant C as 📱 Customer
+    participant A as 🖥️ Your App
+    participant X as 🔷 X-Pay API
+    participant M as 📲 MoMo/Orange
+
+    C->>A: 1. Enter phone number
+    A->>X: 2. Create payment
+    X->>M: 3. Request payment
+    M->>C: 4. USSD push to phone
+    C->>M: 5. Enter PIN
+    M-->>X: 6. Payment confirmed
+    X-->>A: 7. Webhook notification
+    A-->>C: 8. Success! ✅
 ```
 
 ## Basic Integration
