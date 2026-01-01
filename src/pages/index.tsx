@@ -10,8 +10,24 @@ function HomepageHero() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero", styles.heroBanner)}>
+      {/* Grid overlay */}
+      <div className={styles.gridOverlay}></div>
+
+      {/* Floating particles */}
+      <div className={styles.particles}>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+        <div className={styles.particle}></div>
+      </div>
+
       <div className="container">
-        <Heading as="h1" className="hero__title">
+        <Heading as="h1" className={clsx("hero__title", styles.heroTitle)}>
           Build with X-Pay
         </Heading>
         <p className="hero__subtitle">
@@ -20,12 +36,17 @@ function HomepageHero() {
         </p>
         <div className={styles.buttons}>
           <Link className="button button--primary button--lg" to="/docs">
-            Get Started
+            Get Started →
+          </Link>
+          <Link
+            className="button button--secondary button--outline button--lg"
+            to="https://discord.gg/A2p4bwvW"
+          >
+            Join Discord
           </Link>
           <Link
             className="button button--secondary button--outline button--lg"
             to="/docs/api/endpoints"
-            style={{ marginLeft: "1rem" }}
           >
             API Reference
           </Link>
