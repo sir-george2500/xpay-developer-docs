@@ -4,77 +4,15 @@ sidebar_position: 1
 
 # API Endpoints
 
-Complete reference of all X-Pay API endpoints.
+Reference for X-Pay API endpoints used to integrate payments into your application.
 
 ## Base URL
 
 ```
-https://server.xpay-bits.com/v1
+https://server.xpay-bits.com/v1/api/merchants/{merchant_id}
 ```
 
----
-
-## Developer
-
-### Get Profile
-
-```
-GET /developer/profile
-```
-
-### Update Profile
-
-```
-PUT /developer/profile
-```
-
-### Get API Keys
-
-```
-GET /developer/api-keys
-```
-
-### Regenerate API Keys
-
-```
-POST /developer/api-keys/regenerate
-```
-
-### Get Analytics
-
-```
-GET /developer/analytics
-```
-
-### Get Activity
-
-```
-GET /developer/activity
-```
-
----
-
-## Transactions
-
-### List Transactions
-
-```
-GET /developer/transactions
-```
-
-Query parameters:
-
-- `page` - Page number (default: 1)
-- `limit` - Items per page (default: 10, max: 100)
-- `status` - Filter by status
-- `method` - Filter by payment method
-- `date` - Filter by date
-
-### Get Transaction
-
-```
-GET /developer/transactions/{id}
-```
+Replace `{merchant_id}` with your Merchant ID from the dashboard.
 
 ---
 
@@ -82,102 +20,124 @@ GET /developer/transactions/{id}
 
 ### Create Payment
 
-```
+```http
 POST /payments
 ```
 
+Creates a new payment intent.
+
+**Headers:**
+
+- `X-API-Key: sk_sandbox_your_key` or `sk_live_your_key`
+- `Content-Type: application/json`
+
+**Request Body:**
+
+```json
+{
+  "amount": "10.00",
+  "currency": "USD",
+  "payment_method": "stripe",
+  "description": "Order #123",
+  "payment_method_data": {
+    "payment_method_types": ["card"]
+  }
+}
+```
+
+### List Payments
+
+```http
+GET /payments
+```
+
+Query parameters:
+
+- `page` - Page number (default: 1)
+- `limit` - Items per page (default: 10, max: 100)
+- `status` - Filter by status
+
 ### Get Payment
 
-```
-GET /payments/{id}
-```
-
-### Cancel Payment
-
-```
-POST /payments/{id}/cancel
-```
-
-### Refund Payment
-
-```
-POST /payments/{id}/refund
+```http
+GET /payments/{payment_id}
 ```
 
 ---
 
-## Webhooks
+## Refunds
 
-### List Webhooks
+### Create Refund
 
-```
-GET /developer/webhooks
-```
-
-### Create Webhook
-
-```
-POST /developer/webhooks
+```http
+POST /refunds
 ```
 
-### Update Webhook
+**Request Body:**
 
-```
-PUT /developer/webhooks/{id}
-```
-
-### Delete Webhook
-
-```
-DELETE /developer/webhooks/{id}
+```json
+{
+  "payment_id": "pay_abc123",
+  "amount": "5.00",
+  "reason": "customer_request"
+}
 ```
 
-### Test Webhook
+### List Refunds
 
+```http
+GET /refunds
 ```
-POST /developer/webhooks/{id}/test
+
+### Get Refund
+
+```http
+GET /refunds/{refund_id}
 ```
 
 ---
 
-## Live Access
+## Customers
 
-### Get Status
+### Create Customer
 
-```
-GET /developer/live-access/status
-```
-
-### Request Access
-
-```
-POST /developer/live-access/request
+```http
+POST /customers
 ```
 
----
+**Request Body:**
 
-## Documents
-
-### Upload KYC Document
-
-```
-POST /documents/upload/kyc
-```
-
-Form data:
-
-- `document` - File (PDF, JPG, PNG, max 10MB)
-- `document_type` - Type (national_id, passport, drivers_license)
-
-### Upload Business Certificate
-
-```
-POST /documents/upload/business
+```json
+{
+  "email": "customer@example.com",
+  "name": "John Doe",
+  "phone": "+1234567890"
+}
 ```
 
-Form data:
+### List Customers
 
-- `document` - File (PDF, JPG, PNG, max 10MB)
+```http
+GET /customers
+```
+
+### Get Customer
+
+```http
+GET /customers/{customer_id}
+```
+
+### Update Customer
+
+```http
+PUT /customers/{customer_id}
+```
+
+### Delete Customer
+
+```http
+DELETE /customers/{customer_id}
+```
 
 ---
 
