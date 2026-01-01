@@ -156,31 +156,6 @@ POST /developer/live-access/request
 
 ---
 
-## Documents
-
-### Upload KYC Document
-
-```
-POST /documents/upload/kyc
-```
-
-Form data:
-
-- `document` - File (PDF, JPG, PNG, max 10MB)
-- `document_type` - Type (national_id, passport, drivers_license)
-
-### Upload Business Certificate
-
-```
-POST /documents/upload/business
-```
-
-Form data:
-
-- `document` - File (PDF, JPG, PNG, max 10MB)
-
----
-
 ## Response Format
 
 All endpoints return JSON with this structure:
