@@ -15,7 +15,7 @@ X-Pay uses API keys to authenticate your requests. You'll receive two keys:
 
 ### Via Dashboard
 
-1. Log in to [xpay-developer-platform.vercel.app](https://xpay-developer-platform.vercel.app/#features)
+1. Log in to [dashboard.xpay-bits.com](https://dashboard.xpay-bits.com/#features)
 2. Navigate to **Settings** → **API Keys**
 3. Copy your Sandbox and Live keys
 

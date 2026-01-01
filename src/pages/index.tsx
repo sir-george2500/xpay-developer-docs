@@ -79,14 +79,22 @@ function HomepageHero() {
 
 function Feature({ title, description, link }) {
   return (
-    <div className={clsx("col col--4")}>
+    <div
+      className={clsx("col col--4")}
+      style={{
+        marginBottom: "1.5rem",
+      }}
+    >
       <Link
         to={link || "#"}
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <div
-          className="card padding--lg margin-bottom--lg"
-          style={{ height: "100%" }}
+          className="card padding--lg"
+          style={{
+            height: "100%",
+            marginBottom: "0",
+          }}
         >
           <div className="card__header">
             <Heading as="h3">{title}</Heading>
@@ -137,7 +145,14 @@ function Features() {
   return (
     <section className={styles.features} style={{ padding: "4rem 0" }}>
       <div className="container">
-        <div className="row">
+        <div
+          className="row"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0",
+          }}
+        >
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

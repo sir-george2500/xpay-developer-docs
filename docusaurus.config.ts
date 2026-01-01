@@ -79,7 +79,7 @@ const config: Config = {
           "aria-label": "Discord",
         },
         {
-          href: "https://xpay-developer-platform.vercel.app/#features",
+          href: "https://dashboard.xpay-bits.com/",
           label: "Dashboard",
           position: "right",
         },
@@ -127,10 +127,11 @@ const config: Config = {
         {
           title: "Community",
           items: [
-            { label: "Discord", href: "https://discord.gg/A2p4bwvW" },
             {
-              label: "GitHub",
-              href: "https://github.com/orgs/Sound-X-Team/repositories",
+              html: '<a href="https://discord.gg/A2p4bwvW" target="_blank" rel="noopener noreferrer" class="footer-discord-link" aria-label="Discord"></a>',
+            },
+            {
+              html: '<a href="https://github.com/orgs/Sound-X-Team/repositories" target="_blank" rel="noopener noreferrer" class="footer-github-link" aria-label="GitHub"></a>',
             },
             {
               label: "API Reference (Swagger)",

@@ -15,7 +15,7 @@ X-Pay is the unified payment infrastructure for Africa. Accept Mobile Money, Car
 ## How It Works
 
 ```
-1. Create Account     →  Sign up at xpay-developer-platform.vercel.app
+1. Create Account     →  Sign up at dashboard.xpay-bits.com
 2. Get API Keys       →  Sandbox key for testing, Live key for production
 3. Integrate          →  Use REST API or SDKs to accept payments
 4. Go Live            →  Submit documents and request live access

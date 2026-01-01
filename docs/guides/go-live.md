@@ -57,7 +57,7 @@ You'll need to upload:
 
 ### Via Dashboard
 
-1. Log in to your [Dashboard](https://xpay-developer-platform.vercel.app/#features)
+1. Log in to your [Dashboard](https://dashboard.xpay-bits.com/)
 2. Click **Go Live** in the sidebar
 3. Fill in business details:
    - Business Name
@@ -183,7 +183,7 @@ Once approved, you'll receive:
 ## Need Help?
 
 - **Email**: support@xpay-bits.com
-- **Dashboard**: [xpay-developer-platform.vercel.app](https://xpay-developer-platform.vercel.app/#features)
+- **Dashboard**: [xpay-developer-platform.vercel.app](https://dashboard.xpay-bits.com/)
 - **Status**: Check your request status in the dashboard
 
 ## After Going Live
