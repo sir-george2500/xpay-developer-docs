@@ -28,7 +28,7 @@ sequenceDiagram
 
 ### Via Dashboard
 
-1. Go to [Dashboard → Webhooks](https://dashboard.xpay-bits.com/webhooks)
+1. Go to [Dashboard → Webhooks](https://xpay-developer-platform.vercel.app/#features/webhooks)
 2. Click **Add Webhook**
 3. Enter your endpoint URL
 4. Select events to subscribe to

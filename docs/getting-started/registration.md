@@ -8,7 +8,7 @@ Before you can accept payments, you need to create a developer account on the X-
 
 ## Step 1: Sign Up
 
-1. Go to [dashboard.xpay-bits.com](https://dashboard.xpay-bits.com)
+1. Go to [xpay-developer-platform.vercel.app](https://xpay-developer-platform.vercel.app/#features)
 2. Click **"Sign Up"**
 3. Fill in your details:
    - **Email**: Your business email

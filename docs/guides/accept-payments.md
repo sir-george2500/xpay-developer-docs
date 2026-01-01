@@ -8,7 +8,7 @@ This step-by-step guide shows you how to accept your first payment with X-Pay.
 
 ## Prerequisites
 
-- ✅ X-Pay developer account ([Sign up](https://dashboard.xpay-bits.com/signup))
+- ✅ X-Pay developer account ([Sign up](https://xpay-developer-platform.vercel.app/#features/signup))
 - ✅ API keys from your dashboard
 - ✅ A backend server to make API calls
 
@@ -112,7 +112,7 @@ app.post("/webhooks/xpay", (req, res) => {
 });
 ```
 
-Register your webhook URL in the [Dashboard](https://dashboard.xpay-bits.com/webhooks).
+Register your webhook URL in the [Dashboard](https://xpay-developer-platform.vercel.app/#features/webhooks).
 
 ## Step 6: Test Your Integration
 
