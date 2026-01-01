@@ -4,50 +4,12 @@ sidebar_position: 1
 
 # API Endpoints
 
-Complete reference of all X-Pay API endpoints. For interactive documentation, visit our [Swagger UI](https://server.xpay-bits.com/swagger/index.html).
+Complete reference of all X-Pay API endpoints.
 
 ## Base URL
 
 ```
 https://server.xpay-bits.com/v1
-```
-
-## Authentication
-
-### Register
-
-```
-POST /auth/register
-```
-
-### Login
-
-```
-POST /auth/login
-```
-
-### Verify Email
-
-```
-POST /auth/verify
-```
-
-### Logout
-
-```
-POST /auth/logout
-```
-
-### Forgot Password
-
-```
-POST /auth/forgot-password
-```
-
-### Reset Password
-
-```
-POST /auth/reset-password
 ```
 
 ---
@@ -244,9 +206,3 @@ All endpoints return JSON with this structure:
   }
 }
 ```
-
-## Interactive Docs
-
-For detailed request/response schemas and live testing, visit:
-
-**[Swagger UI →](https://server.xpay-bits.com/swagger/index.html)**

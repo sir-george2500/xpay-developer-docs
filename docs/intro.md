@@ -100,4 +100,3 @@ curl -X POST https://server.xpay-bits.com/v1/api/merchants/{merchant_id}/payment
 
 - 💬 **Discord**: [Join our community](https://discord.gg/A2p4bwvW)
 - 📧 **Email**: support@xpay-bits.com
-- 📚 **API Reference**: [Swagger UI](https://server.xpay-bits.com/swagger/index.html)

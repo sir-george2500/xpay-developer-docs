@@ -133,10 +133,6 @@ const config: Config = {
             {
               html: '<a href="https://github.com/orgs/Sound-X-Team/repositories" target="_blank" rel="noopener noreferrer" class="footer-github-link" aria-label="GitHub"></a>',
             },
-            {
-              label: "API Reference (Swagger)",
-              href: "https://server.xpay-bits.com/swagger/index.html",
-            },
           ],
         },
       ],
