@@ -27,6 +27,52 @@ const config: Config = {
   },
   themes: ["@docusaurus/theme-mermaid"],
 
+  headTags: [
+    {
+      tagName: "meta",
+      attributes: {
+        property: "og:site_name",
+        content: "X-Pay Developer Documentation",
+      },
+    },
+    {
+      tagName: "meta",
+      attributes: {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+    },
+    {
+      tagName: "meta",
+      attributes: {
+        name: "twitter:site",
+        content: "@xpay_bits",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+      },
+    },
+  ],
+
   presets: [
     [
       "classic",
@@ -44,9 +90,22 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/xpay-social-card.png",
+    metadata: [
+      {
+        name: "description",
+        content:
+          "X-Pay Developer Documentation — Unified payment infrastructure for Africa. Accept Mobile Money, Cards, and Bank Transfers with a single API.",
+      },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:description",
+        content:
+          "Unified payment infrastructure for Africa. Accept Mobile Money, Cards, and Bank Transfers with a single API.",
+      },
+    ],
     colorMode: {
-      defaultMode: "light",
+      defaultMode: "dark",
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
@@ -80,7 +139,6 @@ const config: Config = {
         },
         {
           href: "https://dashboard.xpay-bits.com/",
-          // Link to production dashboard
           label: "Dashboard",
           position: "right",
         },

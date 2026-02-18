@@ -1,56 +1,126 @@
 /**
- * X-Pay Developer Documentation - Custom Styles
- * Clean, modern design inspired by React.dev and Stripe docs
+ * X-Pay Developer Documentation - Global Styles
+ * Brand-consistent design matching the Xpay Developer Dashboard
+ * Font: Plus Jakarta Sans | Primary: Violet (#7C3AED)
+ * Glass-morphism cards, dark backgrounds, purple accents
  */
 
-/* Color Palette */
+/* ========================================
+   COLOR PALETTE & DESIGN TOKENS
+   ======================================== */
+
 :root {
-  /* Primary Blue */
-  --ifm-color-primary: #2563eb;
-  --ifm-color-primary-dark: #1d4ed8;
-  --ifm-color-primary-darker: #1e40af;
-  --ifm-color-primary-darkest: #1e3a8a;
-  --ifm-color-primary-light: #3b82f6;
-  --ifm-color-primary-lighter: #60a5fa;
-  --ifm-color-primary-lightest: #93c5fd;
+  /* Primary Violet */
+  --ifm-color-primary: #7c3aed;
+  --ifm-color-primary-dark: #6d28d9;
+  --ifm-color-primary-darker: #5b21b6;
+  --ifm-color-primary-darkest: #4c1d95;
+  --ifm-color-primary-light: #8b5cf6;
+  --ifm-color-primary-lighter: #a78bfa;
+  --ifm-color-primary-lightest: #c4b5fd;
 
   /* Light mode backgrounds */
   --ifm-background-color: #ffffff;
-  --ifm-background-surface-color: #f8fafc;
+  --ifm-background-surface-color: #f8f7ff;
   --ifm-navbar-background-color: rgba(255, 255, 255, 0.95);
-  --ifm-footer-background-color: #f1f5f9;
+  --ifm-footer-background-color: #0a0a1a;
 
   /* Typography */
-  --ifm-font-family-base: "Inter", system-ui, -apple-system, sans-serif;
-  --ifm-heading-font-family: "Inter", system-ui, -apple-system, sans-serif;
+  --ifm-font-family-base:
+    "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family:
+    "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace:
+    "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
 
   /* Code blocks */
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.05);
+  --docusaurus-highlighted-code-line-bg: rgba(124, 58, 237, 0.08);
+
+  /* Custom tokens */
+  --xpay-glass-bg: rgba(124, 58, 237, 0.04);
+  --xpay-glass-border: rgba(124, 58, 237, 0.1);
+  --xpay-text-secondary: #64748b;
+  --xpay-card-radius: 16px;
 }
 
 /* Dark Mode */
 [data-theme="dark"] {
-  --ifm-color-primary: #60a5fa;
-  --ifm-color-primary-dark: #3b82f6;
-  --ifm-color-primary-darker: #2563eb;
-  --ifm-color-primary-darkest: #1d4ed8;
-  --ifm-color-primary-light: #93c5fd;
-  --ifm-color-primary-lighter: #bfdbfe;
-  --ifm-color-primary-lightest: #dbeafe;
+  --ifm-color-primary: #a78bfa;
+  --ifm-color-primary-dark: #8b5cf6;
+  --ifm-color-primary-darker: #7c3aed;
+  --ifm-color-primary-darkest: #6d28d9;
+  --ifm-color-primary-light: #c4b5fd;
+  --ifm-color-primary-lighter: #ddd6fe;
+  --ifm-color-primary-lightest: #ede9fe;
 
-  /* Dark mode backgrounds */
-  --ifm-background-color: #0f172a;
-  --ifm-background-surface-color: #1e293b;
-  --ifm-navbar-background-color: rgba(15, 23, 42, 0.95);
-  --ifm-footer-background-color: #020617;
+  /* Dark mode backgrounds — matching dashboard */
+  --ifm-background-color: #030014;
+  --ifm-background-surface-color: #0a0a1a;
+  --ifm-navbar-background-color: rgba(3, 0, 20, 0.92);
+  --ifm-footer-background-color: #000000;
 
-  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(167, 139, 250, 0.15);
+
+  --xpay-glass-bg: rgba(255, 255, 255, 0.03);
+  --xpay-glass-border: rgba(255, 255, 255, 0.08);
+  --xpay-text-secondary: #94a3b8;
 }
 
-/* Typography Improvements */
+/* ========================================
+   GLOBAL BACKGROUND OVERRIDES
+   Remove all gray/default backgrounds from doc pages
+   ======================================== */
+
+/* Main doc content area */
+[data-theme="dark"] main,
+[data-theme="dark"] .main-wrapper,
+[data-theme="dark"] .docMainContainer,
+[data-theme="dark"] [class*="docMainContainer"],
+[data-theme="dark"] .container,
+[data-theme="dark"] article {
+  background-color: #030014 !important;
+}
+
+/* Doc page wrapper and sidebar container */
+[data-theme="dark"] [class*="docPage"],
+[data-theme="dark"] [class*="docRoot"],
+[data-theme="dark"] .row,
+[data-theme="dark"] [class*="docItemContainer"],
+[data-theme="dark"] [class*="docItemWrapper"] {
+  background-color: #030014 !important;
+}
+
+/* Breadcrumb area */
+[data-theme="dark"] [class*="breadcrumbsContainer"] {
+  background-color: transparent !important;
+}
+
+/* TOC container */
+[data-theme="dark"] [class*="tableOfContents"],
+[data-theme="dark"] .table-of-contents {
+  background-color: transparent !important;
+}
+
+/* Light mode also needs consistent bg */
+main,
+.main-wrapper,
+[class*="docMainContainer"],
+[class*="docPage"],
+[class*="docRoot"],
+[class*="docItemContainer"],
+[class*="docItemWrapper"] {
+  background-color: var(--ifm-background-color);
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
 html {
   font-family: var(--ifm-font-family-base);
   letter-spacing: -0.01em;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 h1,
@@ -59,111 +129,637 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-/* Navbar */
+/* ========================================
+   NAVBAR
+   ======================================== */
+
 .navbar {
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--xpay-glass-border);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .navbar {
+  border-bottom: 1px solid rgba(167, 139, 250, 0.08);
 }
 
 .navbar__title {
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.15rem;
 }
 
-/* Buttons */
+.navbar__logo img {
+  height: 32px;
+}
+
+.navbar__link {
+  font-weight: 500;
+}
+
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
 .button--primary {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
   border: none;
   font-weight: 600;
+  border-radius: 12px;
+  color: #ffffff !important;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 .button--primary:hover {
+  background: linear-gradient(135deg, #6d28d9, #7c3aed);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+  color: #ffffff !important;
+}
+
+.button--primary:active,
+.button--primary:focus {
+  color: #ffffff !important;
 }
 
 .button--secondary {
   font-weight: 600;
+  border-radius: 12px;
 }
 
-/* Cards */
+.button--outline {
+  border-color: var(--xpay-glass-border);
+}
+
+[data-theme="dark"] .button--outline {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+   CARDS — GLASS MORPHISM
+   ======================================== */
+
 .card {
-  border-radius: 12px;
-  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: var(--xpay-card-radius);
+  border: 1px solid var(--xpay-glass-border);
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  background: var(--ifm-background-surface-color);
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  background: var(--xpay-glass-bg);
+}
+
+[data-theme="dark"] .card {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.1);
+  border-color: rgba(124, 58, 237, 0.25);
 }
 
 [data-theme="dark"] .card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+  border-color: rgba(167, 139, 250, 0.25);
 }
 
-/* Sidebar */
+/* ========================================
+   SIDEBAR — DARK GLASS STYLING
+   ======================================== */
+
+.menu {
+  font-weight: 500;
+}
+
+/* Sidebar background in dark mode */
+[data-theme="dark"] .theme-doc-sidebar-container {
+  background: #050015;
+  border-right: 1px solid rgba(167, 139, 250, 0.06);
+}
+
 .menu__link {
   font-weight: 500;
-  border-radius: 8px;
-  transition: background 0.15s ease;
+  border-radius: 10px;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+  padding: 0.5rem 0.75rem;
 }
 
-.menu__link--active {
-  background: rgba(37, 99, 235, 0.1);
+.menu__link:hover {
+  background: rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="dark"] .menu__link:hover {
+  background: rgba(167, 139, 250, 0.08);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: calc(0.75rem - 3px);
+}
+
+[data-theme="dark"] .menu__link--active:not(.menu__link--sublist) {
+  background: rgba(167, 139, 250, 0.1);
+}
+
+/* Sidebar category labels */
+.menu__list-item-collapsible:hover {
+  background: rgba(124, 58, 237, 0.05);
+  border-radius: 10px;
+}
+
+[data-theme="dark"] .menu__list-item-collapsible:hover {
+  background: rgba(167, 139, 250, 0.05);
+}
+
+/* ========================================
+   DOC PAGE CONTENT AREA
+   ======================================== */
+
+/* Doc page main area */
+.docMainContainer_node_modules {
+  background: var(--ifm-background-color);
+}
+
+/* Markdown content styling */
+.markdown {
+  color: var(--ifm-font-color-base);
+}
+
+.markdown h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--xpay-glass-border);
+}
+
+[data-theme="dark"] .markdown h1 {
+  border-bottom-color: rgba(167, 139, 250, 0.1);
+}
+
+.markdown h2 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--xpay-glass-border);
+}
+
+[data-theme="dark"] .markdown h2 {
+  border-bottom-color: rgba(167, 139, 250, 0.06);
+}
+
+.markdown h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+/* Links in docs */
+.markdown a {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.markdown a:hover {
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+/* Blockquotes */
+.markdown blockquote {
+  border-left: 4px solid var(--ifm-color-primary);
+  background: var(--xpay-glass-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 0 var(--xpay-card-radius) var(--xpay-card-radius) 0;
+  color: var(--xpay-text-secondary);
+}
+
+[data-theme="dark"] .markdown blockquote {
+  background: rgba(255, 255, 255, 0.02);
+  border-left-color: #a78bfa;
+}
+
+/* Horizontal rules */
+.markdown hr {
+  border-color: var(--xpay-glass-border);
+}
+
+[data-theme="dark"] .markdown hr {
+  border-color: rgba(167, 139, 250, 0.08);
+}
+
+/* Inline code */
+.markdown code {
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--ifm-color-primary);
+  border-radius: 6px;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.875em;
+  font-weight: 500;
+  border: 1px solid rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="dark"] .markdown code {
+  background: rgba(167, 139, 250, 0.1);
+  color: #c4b5fd;
+  border-color: rgba(167, 139, 250, 0.08);
+}
+
+/* ========================================
+   CODE BLOCKS — GLASS STYLING
+   ======================================== */
+
+pre {
+  border-radius: 14px !important;
+  border: 1px solid var(--xpay-glass-border) !important;
+}
+
+[data-theme="dark"] pre {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+pre code {
+  background: none !important;
+  border: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+/* Code block title bar */
+.codeBlockTitle_node_modules,
+div[class*="codeBlockTitle"] {
+  background: rgba(124, 58, 237, 0.06) !important;
+  border-bottom: 1px solid var(--xpay-glass-border) !important;
+  border-radius: 14px 14px 0 0 !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+[data-theme="dark"] .codeBlockTitle_node_modules,
+[data-theme="dark"] div[class*="codeBlockTitle"] {
+  background: rgba(167, 139, 250, 0.08) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Copy button */
+button[class*="copyButton"] {
+  border-radius: 8px;
+}
+
+button[class*="copyButton"]:hover {
+  background: rgba(124, 58, 237, 0.1);
+}
+
+/* Line numbering */
+.codeBlockLines_node_modules span[class*="codeLineNumber"] {
+  color: var(--xpay-text-secondary);
+  opacity: 0.5;
+}
+
+/* ========================================
+   TABLES — GLASS STYLING
+   ======================================== */
+
+table {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--xpay-glass-border);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+[data-theme="dark"] table {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+th {
+  background: rgba(124, 58, 237, 0.06);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--ifm-color-primary);
+  border-bottom: 1px solid var(--xpay-glass-border);
+}
+
+[data-theme="dark"] th {
+  background: rgba(167, 139, 250, 0.08);
+  color: #c4b5fd;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+td {
+  border-bottom: 1px solid var(--xpay-glass-border);
+}
+
+[data-theme="dark"] td {
+  border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: rgba(124, 58, 237, 0.03);
+}
+
+[data-theme="dark"] tr:hover td {
+  background: rgba(167, 139, 250, 0.04);
+}
+
+/* ========================================
+   ADMONITIONS — GLASS STYLE
+   ======================================== */
+
+.admonition {
+  border-radius: 14px;
+  border: 1px solid var(--xpay-glass-border);
+  background: var(--xpay-glass-bg);
+}
+
+[data-theme="dark"] .admonition {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+/* Admonition types — custom border colors */
+.admonition-note {
+  border-left: 4px solid #a78bfa;
+}
+
+.admonition-tip {
+  border-left: 4px solid #34d399;
+}
+
+.admonition-info {
+  border-left: 4px solid #60a5fa;
+}
+
+.admonition-warning,
+.admonition-caution {
+  border-left: 4px solid #fbbf24;
+}
+
+.admonition-danger {
+  border-left: 4px solid #f87171;
+}
+
+.admonition-heading {
+  font-weight: 700;
+}
+
+/* ========================================
+   TOC (TABLE OF CONTENTS)
+   ======================================== */
+
+.table-of-contents {
+  border-left: 1px solid var(--xpay-glass-border);
+}
+
+[data-theme="dark"] .table-of-contents {
+  border-left-color: rgba(167, 139, 250, 0.08);
+}
+
+.table-of-contents__link {
+  color: var(--xpay-text-secondary);
+  transition: color 0.15s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--ifm-color-primary);
+}
+
+.table-of-contents__link--active {
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+/* ========================================
+   BREADCRUMBS
+   ======================================== */
+
+.breadcrumbs__link {
+  color: var(--xpay-text-secondary);
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.breadcrumbs__link:hover {
+  background: rgba(124, 58, 237, 0.06);
+  color: var(--ifm-color-primary);
+}
+
+[data-theme="dark"] .breadcrumbs__link:hover {
+  background: rgba(167, 139, 250, 0.08);
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: rgba(124, 58, 237, 0.1);
   color: var(--ifm-color-primary);
   font-weight: 600;
 }
 
-[data-theme="dark"] .menu__link--active {
-  background: rgba(96, 165, 250, 0.1);
+/* ========================================
+   PAGINATION (Prev/Next)
+   ======================================== */
+
+.pagination-nav__link {
+  border-radius: var(--xpay-card-radius);
+  border: 1px solid var(--xpay-glass-border);
+  background: var(--xpay-glass-bg);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  padding: 1.25rem;
 }
 
-/* Code Blocks */
-pre {
-  border-radius: 8px;
+[data-theme="dark"] .pagination-nav__link {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
 }
 
-code {
-  border-radius: 4px;
+.pagination-nav__link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 58, 237, 0.3);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.08);
 }
 
-/* Tables */
-table {
-  border-radius: 8px;
-  overflow: hidden;
+[data-theme="dark"] .pagination-nav__link:hover {
+  border-color: rgba(167, 139, 250, 0.25);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
 }
 
-th {
-  background: var(--ifm-background-surface-color);
+.pagination-nav__sublabel {
+  color: var(--xpay-text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 
-/* Footer */
+.pagination-nav__label {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ifm-color-primary);
+}
+
+/* ========================================
+   SEARCH (DocSearch)
+   ======================================== */
+
+[data-theme="dark"] .DocSearch-Button {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+[data-theme="dark"] .DocSearch-Button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(167, 139, 250, 0.2);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+/* ========================================
+   TABS (e.g., language tabs in code examples)
+   ======================================== */
+
+.tabs__item {
+  border-radius: 10px 10px 0 0;
+  font-weight: 600;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.tabs__item--active {
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+[data-theme="dark"] .tabs__item--active {
+  background: rgba(167, 139, 250, 0.1);
+}
+
+.tabs__item:hover {
+  background: rgba(124, 58, 237, 0.05);
+}
+
+[data-theme="dark"] .tabs__item:hover {
+  background: rgba(167, 139, 250, 0.06);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
 .footer {
-  border-top: 1px solid var(--ifm-toc-border-color);
+  border-top: 1px solid rgba(124, 58, 237, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .footer {
+  background: #000000;
+  border-top: 1px solid rgba(167, 139, 250, 0.08);
+}
+
+/* Large X-Pay background watermark in footer */
+.footer::before {
+  content: "X-Pay";
+  position: absolute;
+  bottom: -0.2em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(8rem, 15vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  background: linear-gradient(
+    to top,
+    rgba(88, 28, 135, 0.3) 0%,
+    rgba(30, 58, 138, 0.1) 40%,
+    transparent 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+[data-theme="light"] .footer::before {
+  background: linear-gradient(
+    to top,
+    rgba(124, 58, 237, 0.12) 0%,
+    rgba(124, 58, 237, 0.04) 40%,
+    transparent 80%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.3;
+}
+
+.footer .container {
+  position: relative;
+  z-index: 1;
 }
 
 .footer__title {
   font-weight: 700;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
-/* Admonitions */
-.admonition {
-  border-radius: 8px;
+.footer__link-item {
+  color: #94a3b8;
+  transition: color 0.2s ease;
 }
 
-/* Hero Section (Homepage) */
+.footer__link-item:hover {
+  color: #a78bfa;
+}
+
+.footer__copyright {
+  color: #64748b;
+}
+
+/* ========================================
+   HERO SECTION (for markdown pages)
+   ======================================== */
+
 .hero {
   padding: 4rem 0;
   text-align: center;
@@ -193,15 +789,13 @@ th {
   max-width: 600px;
   margin: 0 auto 2rem;
   line-height: 1.6;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--xpay-text-secondary);
 }
 
-/* TOC */
-.table-of-contents__link--active {
-  font-weight: 600;
-}
+/* ========================================
+   ICON LINKS (Discord / GitHub)
+   ======================================== */
 
-/* Discord Icon Link */
 .header-discord-link::before {
   content: "";
   width: 24px;
@@ -215,7 +809,6 @@ th {
   opacity: 0.7;
 }
 
-/* GitHub Icon Link */
 .header-github-link::before {
   content: "";
   width: 24px;
@@ -234,7 +827,7 @@ th {
   opacity: 0.7;
 }
 
-/* Footer Discord Icon Link */
+/* Footer icons */
 .footer-discord-link {
   display: inline-block;
   width: 28px;
@@ -249,7 +842,6 @@ th {
   opacity: 0.7;
 }
 
-/* Footer GitHub Icon Link */
 .footer-github-link {
   display: inline-block;
   width: 28px;
@@ -274,24 +866,19 @@ th {
    MOBILE RESPONSIVE STYLES
    ======================================== */
 
-/* Mobile breakpoint: screens < 768px */
 @media screen and (max-width: 768px) {
-  /* NAVBAR FIX - Hide desktop items, show only hamburger */
   .navbar__items--right .navbar__item:not(.navbar__toggle) {
     display: none !important;
   }
 
-  /* Keep only the brand/logo and hamburger visible */
   .navbar__items--right {
     gap: 0;
   }
 
-  /* Show items in mobile sidebar menu instead */
   .navbar-sidebar .navbar__item {
     display: flex !important;
   }
 
-  /* Navbar overall mobile styling */
   .navbar {
     padding: 0 0.5rem;
   }
@@ -304,13 +891,11 @@ th {
     font-size: 1rem;
   }
 
-  /* Content container padding */
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  /* Hero section mobile */
   .hero {
     padding: 2rem 0;
   }
@@ -325,7 +910,6 @@ th {
     padding: 0 0.5rem;
   }
 
-  /* Buttons - stack vertically on mobile */
   .button--lg {
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
@@ -334,11 +918,9 @@ th {
     margin-bottom: 0.5rem;
   }
 
-  /* CARD FIX - Proper spacing and margins */
   .card {
     margin: 1rem 0 !important;
     padding: 1.25rem !important;
-    border-radius: 12px;
   }
 
   .card h3 {
@@ -352,7 +934,6 @@ th {
     margin-bottom: 0;
   }
 
-  /* Features grid - single column on mobile */
   .row {
     margin: 0 !important;
   }
@@ -362,7 +943,6 @@ th {
     margin-bottom: 0 !important;
   }
 
-  /* Tables - horizontal scroll */
   .markdown table {
     display: block;
     overflow-x: auto;
@@ -378,7 +958,6 @@ th {
     font-size: 0.875rem;
   }
 
-  /* Code blocks - horizontal scroll and smaller font */
   pre {
     font-size: 0.8rem;
     padding: 0.75rem;
@@ -391,13 +970,11 @@ th {
     word-break: break-word;
   }
 
-  /* Inline code - wrap on mobile */
   p code,
   li code {
     word-break: break-all;
   }
 
-  /* Footer columns stack */
   .footer__links {
     flex-direction: column;
   }
@@ -406,7 +983,6 @@ th {
     margin-bottom: 1.5rem;
   }
 
-  /* Markdown content spacing */
   .markdown {
     padding: 0.5rem;
   }
@@ -423,7 +999,6 @@ th {
     font-size: 1.2rem;
   }
 
-  /* Fix React/JSX inline styles in MDX - override flex layouts */
   article div[style*="display: flex"] {
     flex-direction: column !important;
     gap: 0.75rem !important;
@@ -435,12 +1010,10 @@ th {
     gap: 0.75rem !important;
   }
 
-  /* TOC hide on very small screens */
   .table-of-contents {
     display: none;
   }
 
-  /* Admonitions padding */
   .admonition {
     padding: 0.75rem;
   }
@@ -453,7 +1026,6 @@ th {
     font-size: 0.875rem;
   }
 
-  /* Homepage specific - feature cards container */
   .features {
     padding: 2rem 1rem !important;
   }
@@ -473,9 +1045,20 @@ th {
     max-width: 100% !important;
     flex: none !important;
   }
+
+  /* Footer watermark smaller on mobile */
+  .footer::before {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  /* Pagination stacking */
+  .pagination-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
-/* Tablet breakpoint: 768px - 996px */
+/* Tablet breakpoint */
 @media screen and (min-width: 769px) and (max-width: 996px) {
   .hero__title {
     font-size: 2.5rem;
@@ -499,12 +1082,7 @@ th {
 .markdown img {
   max-width: 100%;
   height: auto;
-}
-
-/* Smooth scrolling for mobile */
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+  border-radius: 12px;
 }
 
 /* Fix touch targets */
